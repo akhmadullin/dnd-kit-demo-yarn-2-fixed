@@ -5,9 +5,20 @@ This project was created for demonstartion of incorrect work of dnd-kit with yar
 If you run app, you will see, that dnd does not work.
 
 Debugging shows, that the reason of this bug is different `DndContext` in `useDraggable` and `useDroppable` hooks (different from App `DndContext`).
-This happens because of Yarn 2 dependencies resolving mechanism - we have 2 different `@dnd-kit/core` in our App (check `yarn.lock` file).
+This happens because of Yarn 2 dependencies resolving mechanism - we have 2 different `@dnd-kit/core` instances in our App (check `yarn.lock` file).
 
 It seems like, not core packages in dnd-kit project should use `@dnd-kit/core` as peerDependency.
+
+### Solution for projects, that use @dnd-kit/core and @dnd-kit/sortable in dependencies
+To solve problem with dnd-kit dependencies you should define in `.yarnrc.yml`, that `@dnd-kit/core` should be used as peerDependency for `@dnd-kit/sortable`:
+
+```yml
+# .yarnrc.yml
+packageExtensions:
+  "@dnd-kit/sortable@*":
+    peerDependencies:
+      "@dnd-kit/core": "*"
+```
 
 ## Available Scripts
 
