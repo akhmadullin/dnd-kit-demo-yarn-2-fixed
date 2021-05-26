@@ -20,6 +20,10 @@ packageExtensions:
       "@dnd-kit/core": "*"
 ```
 
+### Live demo
+
+https://akhmadullin.github.io/dnd-kit-demo-yarn-2-fixed/
+
 ## Available Scripts
 
 In the project directory, you can run:
